@@ -1,0 +1,4 @@
+int32 score
+int32 targets_caught
+string target_name
+float32 capture_distance

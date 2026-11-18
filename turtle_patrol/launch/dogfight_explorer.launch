@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+
+<launch>
+
+    <!-- Turtlesim with white background -->
+    <node pkg="turtlesim"
+          type="turtlesim_node"
+          name="turtlesim"
+          output="screen">
+
+        <param name="background_r" value="255"/>
+        <param name="background_g" value="255"/>
+        <param name="background_b" value="255"/>
+
+    </node>
+
+    <!-- Virtual Wall Sensor -->
+    <node pkg="turtle_patrol"
+          type="virtual_wall_sensor.py"
+          name="virtual_wall_sensor"
+          output="screen">
+
+        <param name="turtle_name" value="target"/>
+
+        <remap from="/wall_sensor"
+               to="/target/wall_sensor"/>
+
+    </node>
+
+    <!-- Safe Explorer -->
+    <node pkg="turtle_patrol"
+          type="safe_explorer.py"
+          name="safe_explorer"
+          output="screen">
+
+        <param name="turtle_name" value="target"/>
+
+        <remap from="/wall_sensor"
+               to="/target/wall_sensor"/>
+
+    </node>
+
+    <!-- Hunter -->
+    <node pkg="turtle_patrol"
+          type="hunter_controller.py"
+          name="hunter_controller"
+          output="screen">
+
+        <param name="target_mode" value="explorer"/>
+
+    </node>
+
+</launch>

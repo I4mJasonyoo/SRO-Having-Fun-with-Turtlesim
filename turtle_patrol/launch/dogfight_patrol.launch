@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<launch>
+
+    <!-- White background -->
+    <node pkg="turtlesim"
+          type="turtlesim_node"
+          name="turtlesim"
+          output="screen">
+
+        <param name="background_r" value="255"/>
+        <param name="background_g" value="255"/>
+        <param name="background_b" value="255"/>
+
+    </node>
+
+    <!-- Waypoint Manager for target -->
+    <node pkg="turtle_patrol"
+          type="waypoint_manager.py"
+          name="waypoint_manager"
+          output="screen">
+        <param name="turtle_name" value="target"/>
+    </node>
+
+    <!-- Controller for target -->
+    <node pkg="turtle_patrol"
+          type="turtle_controller.py"
+          name="turtle_controller"
+          output="screen">
+        <param name="turtle_name" value="target"/>
+    </node>
+
+    <!-- Hunter Controller -->
+    <node pkg="turtle_patrol"
+          type="hunter_controller.py"
+          name="hunter_controller"
+          output="screen">
+        <param name="target_mode" value="patrol"/>
+    </node>
+
+</launch>
